@@ -32,18 +32,20 @@ var Game = Class.$extend({
     var self = this;
 
     var showDino = false;
-    $('#bg1').css({backgroundPosition: '-200px 0px'});
-    $('#bg2').css({backgroundPosition: '-200px 0px', display: 'none'});
+    var verticalOffset = rand(3)*200;
+    $('#bg1').css({backgroundPosition: '-200px '+verticalOffset+'px'});
+    $('#bg2').css({backgroundPosition: '-200px '+verticalOffset+'px', display: 'none'});
 
     var num1 = -100;
     var bg1 = $('#bg1').get(0);
     var animateBG = function() {
-      if (num1 == 1900) {
-        $('#bg1, #bg2').css({backgroundPosition: '-200px 0px', display: showDino ? 'block' : 'none'});
+      if (num1 == 1500) {
+        verticalOffset = rand(3)*200;
+        $('#bg1, #bg2').css({backgroundPosition: '-200px '+verticalOffset+'px', display: showDino ? 'block' : 'none'});
         num1 = -100;
       }
 
-      $('#bg1, #bg2').animate({backgroundPosition: num1+'px 0px'}, 500, 'linear', function() {
+      $('#bg1, #bg2').animate({backgroundPosition: num1+'px '+verticalOffset+'px'}, 500, 'linear', function() {
         if (this == bg1) {
           animateBG();
         }
@@ -54,13 +56,12 @@ var Game = Class.$extend({
     animateBG();
 
     var num2 = 0;
-    var interval = setInterval(function() {
+    var timeout = function() {
       (new Square(Game.width, rand(Game.height - 400) + 200, 'square')).startAnimate();
       
       if (num2 % 2 == 0) {
         (new RedSquare(-40, rand(Game.height - 400) + 200)).startAnimate();
       }
-
 
       num2 += 1;
 
@@ -68,10 +69,11 @@ var Game = Class.$extend({
         showDino = true;
       }
 
-      if (num2 == 40) {
-        clearInterval(interval);
+      if (num2 < 40) {
+        setTimeout(timeout, 300+rand(700));
       }
-    }, 1100);
+    };
+    setTimeout(timeout, 2000);
 
     this.keyboard = Keyboard();
     

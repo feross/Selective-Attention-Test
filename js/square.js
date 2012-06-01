@@ -13,8 +13,8 @@ var Square = Element.$extend({
   },
 
   setNewLocations : function() {
-    this.x = rand(Game.width + 300) - 300;
-    this.y = rand(Game.height - 200) + 200 - 40;
+    this.x = rand(this.x + 300) - 300;
+    this.y = rand(Game.height - 40);
   },
 
   startAnimate : function() {
@@ -48,6 +48,6 @@ var RedSquare = Square.$extend({
 
   setNewLocations : function() {
     this.x = rand(Game.width + 300);
-    this.y = rand(Game.height - 200);
+    this.y = rand(Game.height - 40);
   }
 });
