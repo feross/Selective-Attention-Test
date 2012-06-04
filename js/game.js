@@ -95,7 +95,7 @@ var Game = Class.$extend({
             });
           });
           
-        }, 6000);
+        }, 7000);
       }
     };
     setTimeout(timeout, 2000);
