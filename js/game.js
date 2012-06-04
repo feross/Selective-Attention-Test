@@ -2,7 +2,12 @@ var g, stats;
 
 $(function() {
   g = Game('#window');
-  g.start();
+  $('#start').click(function() {
+    g.start();
+  });
+  $('#again').click(function() {
+    window.location.reload();
+  });
 });
 
 var Game = Class.$extend({
@@ -10,7 +15,7 @@ var Game = Class.$extend({
     width : 1000,
     height : 800,
     fps: 60, // gameplay fps
-    showStats : true,
+    showStats : false,
   },
   
   __init__ : function(gameWindow) {
@@ -29,18 +34,21 @@ var Game = Class.$extend({
   
   // Start the game
   start : function() {
+    $('#start').hide();
+    $(this.gameWindow).show();
+
     var self = this;
 
     var showDino = false;
-    var verticalOffset = rand(3)*200;
+    var verticalOffset = rand(1)*600;
     $('#bg1').css({backgroundPosition: '-200px '+verticalOffset+'px'});
     $('#bg2').css({backgroundPosition: '-200px '+verticalOffset+'px', display: 'none'});
 
     var num1 = -100;
     var bg1 = $('#bg1').get(0);
     var animateBG = function() {
-      if (num1 == 1500) {
-        verticalOffset = rand(3)*200;
+      if (num1 == 1100) {
+        verticalOffset = rand(1)*600;
         $('#bg1, #bg2').css({backgroundPosition: '-200px '+verticalOffset+'px', display: showDino ? 'block' : 'none'});
         num1 = -100;
       }
@@ -71,6 +79,23 @@ var Game = Class.$extend({
 
       if (num2 < 40) {
         setTimeout(timeout, 300+rand(700));
+      } else {
+        console.log('else');
+        setTimeout(function() {
+          console.log('timeout');
+          $(self.gameWindow + ', #prompt').fadeOut(function() {
+            $('#final1').fadeIn(function() {
+              setTimeout(function() {
+                $('#final2').fadeIn(function() {
+                  setTimeout(function() {
+                    $('#again').fadeIn();
+                  }, 2000);
+                });
+              }, 2000);
+            });
+          });
+          
+        }, 6000);
       }
     };
     setTimeout(timeout, 2000);

@@ -1,10 +1,20 @@
 <html>
 <head>
-  <title>Raiden</title>
+  <title>Test your perception!</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div id="window">
+  <center>
+    <h1 id="prompt">Test your perception! &nbsp;<strong>How many black squares do you see?</strong></h1>
+    <button id="start">Click to start</button>
+
+    <h1 id="final1" style="display: none;">Did you see <strong>40 squares</strong>?</h1>
+    <h1 id="final2" style="display: none;">What about the <strong>5 tyrannosaurus rexes</strong>?</h1>
+    <button id="again" style="display: none;">See it again?</button>
+  </center>
+
+  <div id="window" style="display: none;">
     <div id="bg1"></div>
     <div id="bg2"></div>
   </div>

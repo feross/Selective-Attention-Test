@@ -5,6 +5,17 @@ html {
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+  font-family: 'Asap', sans-serif;
+}
+
+h1 {
+  font-weight: normal;
+}
+
+button {
+  width: 220px;
+  height: 60px;
+  font-size: 24px;
 }
 
 #window {
